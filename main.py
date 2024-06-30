@@ -2,7 +2,10 @@ import requests
 import json
 import csv
 import statistics
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
 def get_uefa_european_championship_odds(api_key):
     url = "https://api.the-odds-api.com/v4/sports/soccer_uefa_european_championship/odds"
@@ -87,8 +90,10 @@ def write_to_csv(jsondata):
             csvwriter.writerow(row)
 
 if __name__ == "__main__":
-    api_key = "decf43c4dee4ae44456daf1d6f6544a7"  # Replace this with your actual API key
-    
+
+    # Replace with your API key
+    api_key = os.getenv('MY_API_KEY')
+
     # Get odds from the API
     odds = get_uefa_european_championship_odds(api_key)
     
